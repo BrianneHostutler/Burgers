@@ -1,22 +1,26 @@
+<div class="container">
 
-  <h2>Current Burgers</h2>
-  <ul>
-    {{#each burgers}}
-      {{#unless this.devoured}}
-        <li>
-          <img class="hamburgerImg" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png">
-          <p>
-            {{this.burger_name}}
-          </p>
-        </li>
-        <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button class="eat" type="submit">EAT!</button>
-        </form>
-      {{/unless}}
-    {{/each}}
-  </ul>
-  <div>
+  <div id="uneaten" class="all">
+    <h2>Current Burgers</h2>
+    <ul>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <li>
+            <img class="hamburgerImg" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png">
+            <p>
+              {{this.burger_name}}
+            </p>
+          </li>
+          <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="devoured" value="true">
+            <button class="eat" type="submit">EAT!</button>
+          </form>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <div id="add" class="all">
     <form class="create-update-form" action="/burgers/create" method="POST">
       <h2 class="add-title">Add a Burger</h2>
       <div class="form-group">
@@ -26,20 +30,21 @@
       <button type="submit">Add Burger</button>
     </form>
   </div>
-</div>
 
-<div>
-  <h2>Eaten Burgers</h2>
-  <ul>
-    {{#each burgers}}
-      {{#if this.devoured}}
-        <li>
-          <img class="hamburgerEaten" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png" alt="hamburger.png">
-          <p>
-            {{this.burger_name}}
-          </p>
-        </li>
-      {{/if}}
-    {{/each}}
-  </ul>
+  <div id="eaten" class="all">
+    <h2>Eaten Burgers</h2>
+    <ul>
+      {{#each burgers}}
+        {{#if this.devoured}}
+          <li>
+            <img class="hamburgerEaten" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png" alt="hamburger.png">
+            <p>
+              {{this.burger_name}}
+            </p>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+
 </div>
