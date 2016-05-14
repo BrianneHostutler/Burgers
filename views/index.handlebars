@@ -1,56 +1,45 @@
-<h1>Burgers!</h1>
 
-<h2>burgers that are not devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-      <li>
-        {{this.name}}
-
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+  <h2>Current Burgers</h2>
+  <ul>
+    {{#each burgers}}
+      {{#unless this.devoured}}
+        <li>
+          <img class="hamburgerImg" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png">
+          <p>
+            {{this.burger_name}}
+          </p>
+        </li>
+        <form action="/burgers/update/{{this.id}}?_method=PUT" method="POST">
           <input type="hidden" name="devoured" value="true">
-          <button type="submit">SLEEP TIME!</button>
+          <button class="eat" type="submit">EAT!</button>
         </form>
-
-        {{> burgers/delete-burger}}
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>burgers that are devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if this.devoured}}
-      <li>
-        {{this.name}}
-
-        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">WAKE UP!</button>
-        </form>
-
-        {{> burgers/delete-burger}}
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a burger</h2>
-<form class="create-update-form" action="burgers/create" method="POST">
-
-  <div class="form-group">
-    <label for="ca">burger Name:</label>
-    <input type="text" id="ca" name="name">
+      {{/unless}}
+    {{/each}}
+  </ul>
+  <div>
+    <form class="create-update-form" action="/burgers/create" method="POST">
+      <h2 class="add-title">Add a Burger</h2>
+      <div class="form-group">
+        <label >Burger Name:</label>
+        <input type="text" name="name">
+      </div>
+      <button type="submit">Add Burger</button>
+    </form>
   </div>
+</div>
 
-  <div class="form-group">
-    <label for="slee">devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> devoured!<br>
-    <input type="radio" name="devoured" value="0"> Awake
-  </div>
-
-  <button type="submit">Add burger</button>
-</form>
+<div>
+  <h2>Eaten Burgers</h2>
+  <ul>
+    {{#each burgers}}
+      {{#if this.devoured}}
+        <li>
+          <img class="hamburgerEaten" src="http://www.clipartbest.com/cliparts/7ia/KMp/7iaKMppaT.png" alt="hamburger.png">
+          <p>
+            {{this.burger_name}}
+          </p>
+        </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>
